@@ -27,6 +27,8 @@ model Account {
   id_token          String? @db.Text
   session_state     String?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], name: "userId")
   @@unique([provider, providerAccountId])
 }
  
@@ -36,6 +38,8 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], name: "userId")
 }
  
 model User {
